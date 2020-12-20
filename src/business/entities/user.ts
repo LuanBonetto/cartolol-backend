@@ -3,11 +3,11 @@ export default class User {
         private id: string,
         private firstname: string,
         private lastname: string,
-        private birthdate: number,
-        private username: string,
+        private birthDate: number,
+        private nickname: string,
         private email: string,
         private password: string,
-        private admin: boolean
+        private isAdmin: boolean = false
     ) { }
 
     public getId(): string {
@@ -23,23 +23,23 @@ export default class User {
     }
 
     public getBirthDate(): number {
-        return this.birthdate;
+        return this.birthDate;
     }
 
     public getEmail(): string {
         return this.email;
     }
 
-    public getUserName(): string {
-        return this.username;
+    public getNickname(): string {
+        return this.nickname;
     }
 
     public getPassword(): string {
         return this.password;
     }
 
-    public getAdmin(): boolean {
-        return this.admin;
+    public getIsAdmin(): boolean {
+        return this.isAdmin;
     }
 
 }
