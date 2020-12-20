@@ -14,3 +14,5 @@ export abstract class BaseDatabase {
 		connection: this.connectionData
 	});
 }
+
+
