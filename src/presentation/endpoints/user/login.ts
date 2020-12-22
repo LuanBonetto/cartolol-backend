@@ -4,7 +4,6 @@ import { UserDB } from "../../../data/UserDB";
 import { BcryptPassword } from "../../../business/services/Bcrypt";
 import { JWTAutentication } from "../../../business/services/JWTAutentication";
 
-
 export const loginEndpoint = async (req: Request, res: Response) => {
   try {
     const loginUC = new LoginUC(new UserDB(), new BcryptPassword(), new JWTAutentication());
@@ -22,4 +21,3 @@ export const loginEndpoint = async (req: Request, res: Response) => {
     });
   }
 };
-  

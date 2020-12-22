@@ -7,6 +7,7 @@ export default class User {
         private nickname: string,
         private email: string,
         private password: string,
+        private isValidEmail: boolean = false,
         private isAdmin: boolean = false
     ) { }
 
@@ -36,6 +37,10 @@ export default class User {
 
     public getPassword(): string {
         return this.password;
+    }
+
+    public getIsValidEmail(): boolean {
+      return this.isValidEmail;
     }
 
     public getIsAdmin(): boolean {
