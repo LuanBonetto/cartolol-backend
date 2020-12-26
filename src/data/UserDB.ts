@@ -1,7 +1,7 @@
 import { UserGateway } from "../business/gateways/UserGateway";
 import { BaseDatabase } from "./BaseDatabase";
 import User  from "../business/entities/user";
-
+import { BadRequestError } from '../business/errors/BadRequestError';
 
 export class UserDB extends BaseDatabase implements UserGateway {
 
@@ -47,15 +47,50 @@ export class UserDB extends BaseDatabase implements UserGateway {
   }
 
   public async signUp(user: User): Promise<void> {
-    await this.connection.insert({
-      id: user.getId(),
-      firstname: user.getFirstName(),
-      lastname: user.getLastName(),
-      nickname: user.getNickname(),
-      birthDate: user.getBirthDate(),
-      password: user.getPassword(),
-      email: user.getEmail(),
-      isAdmin: user.getIsAdmin()
-    }).into(this.userTableName)
+    try {
+      await this.connection.insert({
+        id: user.getId(),
+        firstname: user.getFirstName(),
+        lastname: user.getLastName(),
+        nickname: user.getNickname(),
+        birthDate: user.getBirthDate(),
+        password: user.getPassword(),
+        email: user.getEmail(),
+        isValidEmail: user.getIsValidEmail(),
+        isAdmin: user.getIsAdmin()
+      }).into(this.userTableName)
+    } catch(err) {
+      throw new BadRequestError(err)
+    }
+  }
+
+  public async checkIfEmailExists(email: string): Promise<boolean> {
+    try {
+      const result = await this.connection.raw(`
+        SELECT EXISTS(SELECT 1 FROM ${this.userTableName} WHERE email = '${email}') AS 'EXIST';
+      `)
+      if(!result[0][0].EXIST){
+        return false;
+      } else {
+        return true;
+      }
+    } catch(err) {
+      throw new BadRequestError(err);
+    }
+  }
+
+  public async checkIfNicknameExists(nickname: string): Promise<boolean> {
+    try {
+      const result = await this.connection.raw(`
+        SELECT EXISTS(SELECT 1 FROM ${this.userTableName} WHERE nickname = '${nickname}') AS 'EXIST';
+      `)
+      if(!result[0][0].EXIST){
+        return false;
+      } else {
+        return true;
+      }
+    } catch(err) {
+      throw new BadRequestError(err);
+    }
   }
 }

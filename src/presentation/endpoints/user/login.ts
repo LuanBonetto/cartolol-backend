@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { LoginUC } from "../../../business/usecase/user/Login";
 import { UserDB } from "../../../data/UserDB";
-import { BcryptPassword } from "../../../business/services/Bcrypt";
-import { JWTAutentication } from "../../../business/services/JWTAutentication";
+import { BcryptPassword } from "../../../business/helpers/Bcrypt";
+import { JWTAutentication } from "../../../business/helpers/JWTAutentication";
 
 export const loginEndpoint = async (req: Request, res: Response) => {
   try {

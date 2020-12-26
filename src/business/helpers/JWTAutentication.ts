@@ -6,7 +6,10 @@ export class JWTAutentication implements JWTAutenticationGateway {
 		const token = jwt.sign(
 			{
 				userId: input.userId,
-				userDevice: input.userDevice
+        nickname: input.nickname,
+        isAdmin: input.isAdmin,
+        isAuthenticatedEmail: input.isAuthenticatedEmail,
+        userDevice: input.userDevice,
 			},
 			process.env.SECRET_KEY as string,
 			{
@@ -21,15 +24,18 @@ export class JWTAutentication implements JWTAutenticationGateway {
 
 		return {
 			userId: result.userId,
-			userDevice: result.userDevice
+      nickname: result.nickname,
+      isAdmin: result.isAdmin,
+      isAuthenticatedEmail: result.isAuthenticatedEmail,
+      userDevice: result.userDevice,
 		};
 	}
 }
 
 export interface UserInfoForToken {
-	userId: string;
+  userId: string;
+  nickname: string,
+  isAdmin: boolean,
+  isAuthenticatedEmail: boolean,
 	userDevice?: string;
 }
-
-export const ACCESS_TOKEN_EXPIRES = '15min';
-export const REFRESH_TOKEN_EXPIRES = '30d';
