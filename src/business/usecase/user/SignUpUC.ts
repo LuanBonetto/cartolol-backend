@@ -5,6 +5,7 @@ import { BcryptGateway } from "../../gateways/BcryptGateway";
 import { UUIDGeneratorGateway } from '../../gateways/UUIDGeneratorGateway';
 import { BadRequestError } from "../../errors/BadRequestError";
 import { ValidatorGateway } from "../../gateways/ValidatorGateway";
+import { MailGateway } from "../../gateways/MaitGateway";
 
 export class SignUpUC {
   constructor(
@@ -13,6 +14,7 @@ export class SignUpUC {
     private bcript:BcryptGateway,
     private uuid:UUIDGeneratorGateway,
     private validator:ValidatorGateway,
+    private mail:MailGateway,
   ){}
 
   private async validateFields( input: SignUpInput ): Promise<void> {

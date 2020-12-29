@@ -5,10 +5,18 @@ import { JWTAutentication } from "../../../business/helpers/JWTAutentication";
 import { BcryptPassword } from "../../../business/helpers/Bcrypt";
 import { UUIDGenerator } from '../../../business/helpers/UUID';
 import { Validator } from "../../../business/helpers/Validator";
+import { Mail } from "../../../business/helpers/Mail";
 
 export const signUpEndpoint = async(req: Request, res: Response) => {
   try{
-    const signUpUC = new SignUpUC(new UserDB(), new JWTAutentication(), new BcryptPassword(), new UUIDGenerator(), new Validator());
+    const signUpUC = new SignUpUC(
+      new UserDB(),
+      new JWTAutentication(),
+      new BcryptPassword(),
+      new UUIDGenerator(),
+      new Validator(),
+      new Mail()
+    );
     const result = await signUpUC.execute({
       firstname: req.body.firstname,
       lastname: req.body.lastname,
