@@ -24,7 +24,7 @@ export class CreateTeamUC {
       )
 
       const newImageTeam = new TeamImage(
-        this.uuid.generateUUID(),
+        input.imageKey,
         input	.imageName,
         input.imageSize,
         input.imageUrl,

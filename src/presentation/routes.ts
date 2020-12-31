@@ -7,6 +7,7 @@ import { signUpEndpoint } from './endpoints/user/signUp';
 import { loginEndpoint } from './endpoints/user/login';
 import { createChampionshipEndpoint } from './endpoints/championship/createChampionship';
 import { createTeamEndpoint } from './endpoints/team/createTeam';
+import { createPlayerEndpoint } from './endpoints/player/createPlayer';
 
 const app = express();
 app.use(cors({credentials: true, origin: true}));
@@ -20,5 +21,7 @@ app.post('/user/login', loginEndpoint);
 app.post('/championship', multer(new MulterConfig().config).single("file"), createChampionshipEndpoint);
 
 app.post('/team', multer(new MulterConfig().config).single("file"), createTeamEndpoint);
+
+app.post('/player', multer(new MulterConfig().config).single("file"), createPlayerEndpoint);
 
 export default app;
