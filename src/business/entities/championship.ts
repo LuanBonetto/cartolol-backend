@@ -2,7 +2,7 @@ export default class Championship {
   constructor(
     private id: string,
     private name: string,
-    private imageId: string,
+    private image: string,
   ){}
 
   public getId(): string {
@@ -14,6 +14,6 @@ export default class Championship {
   }
 
   public getImageID(): string {
-    return this.imageId;
+    return this.image;
   }
 }

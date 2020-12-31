@@ -19,7 +19,7 @@ export class CreateChampionshipUC {
       const newChampionship = new Championship(
         this.uuid.generateUUID(),
         input.championshipName,
-        input.imageKey,
+        input.imageUrl,
       );
 
       const newChampionshipImage = new championshipImage(
