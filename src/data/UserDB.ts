@@ -13,7 +13,7 @@ export class UserDB extends BaseDatabase implements UserGateway {
       input.firstname,
       input.lastname,
       input.birthDate,
-      input.username,
+      input.nickname,
       input.email,
       input.password,
       input.admin)
@@ -33,9 +33,9 @@ export class UserDB extends BaseDatabase implements UserGateway {
   }
 
 
-  public async getUserByUsername(username: string): Promise<User | undefined> {
+  public async getUserByNickname(nickname: string): Promise<User | undefined> {
     const result = await this.connection.raw(
-      `SELECT * FROM ${this.userTableName} WHERE username='${username}'`
+      `SELECT * FROM ${this.userTableName} WHERE nickname='${nickname}'`
     );
 
     if (!result[0][0]) {

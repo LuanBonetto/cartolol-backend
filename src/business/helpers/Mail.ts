@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { MailGateway } from '../gateways/MaitGateway';
+import { MailGateway } from '../gateways/MailGateway';
 
 export class Mail implements MailGateway {
   private transpoter = nodemailer.createTransport({

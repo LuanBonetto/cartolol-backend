@@ -5,7 +5,7 @@ import { BcryptGateway } from "../../gateways/BcryptGateway";
 import { UUIDGeneratorGateway } from '../../gateways/UUIDGeneratorGateway';
 import { BadRequestError } from "../../errors/BadRequestError";
 import { ValidatorGateway } from "../../gateways/ValidatorGateway";
-import { MailGateway } from "../../gateways/MaitGateway";
+import { MailGateway } from "../../gateways/MailGateway";
 
 export class SignUpUC {
   constructor(
