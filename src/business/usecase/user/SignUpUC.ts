@@ -80,6 +80,18 @@ export class SignUpUC {
         isAuthenticatedEmail: newUser.getIsValidEmail(),
       }
 
+      await this.mail.send(
+        'Bem Vindo ao Cartolol'
+        , 'Bem Vindo ao Cartolol',
+        [newUser.getEmail()],
+        `
+          <h1>Olá ${newUser.getNickname()}, seu cadastro foi realizado com sucesso!<h1/>
+          <br/>
+          <p>Faça a autenticação do seu e-mail <a>clicando aqui</a><p/>
+          <i>Não responda esse e-mail<i/>
+        `
+      )
+
       const token = this.JWT.generateToken(userInfo, process.env.ACCESS_TOKEN_EXPIRES as string)
 
     return ({
